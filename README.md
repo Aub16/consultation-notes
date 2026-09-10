@@ -50,7 +50,7 @@ Le front est statique : ouvrir `front/index.html` via un serveur statique (ex. l
 |---|---|---|
 | lea.martin@ecole.fr | password123 | Étudiante |
 | zianemenni@outlook.fr | password123 | Enseignant |
-| a.devogelaere@ecole.fr | password123 | Superviseur |
+| a.devogelaere@siweb.fr | password123 | Superviseur |
 
 ## Routes API
 

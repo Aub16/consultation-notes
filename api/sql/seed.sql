@@ -7,7 +7,7 @@ SET @demo_salt = 'e4a771590fa36ac5487f381b45a37fdc';
 
 -- Superviseur
 INSERT INTO users (first_name, last_name, email, password_hash, password_salt, role, status)
-VALUES ('Aubin', 'Devogelaere', 'a.devogelaere@ecole.fr', @demo_hash, @demo_salt, 'superviseur', 'active');
+VALUES ('Aubin', 'Devogelaere', 'a.devogelaere@siweb.fr', @demo_hash, @demo_salt, 'superviseur', 'active');
 
 -- Enseignants
 INSERT INTO users (first_name, last_name, email, password_hash, password_salt, role, status)
