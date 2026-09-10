@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes notes — Consultation Notes</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+  <header class="topbar" id="topbar"></header>
+
+  <main class="content">
+    <div class="page-header">
+      <h1>Mes notes</h1>
+      <p>Semestre en cours · Vue d'ensemble de vos résultats</p>
+    </div>
+
+    <div id="stats" class="stats hidden">
+      <div class="stat-card">
+        <div class="label">Moyenne générale</div>
+        <div class="value success" id="stat-average">—</div>
+        <div class="sub" id="stat-average-sub"></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Cours suivis</div>
+        <div class="value" id="stat-courses">—</div>
+        <div class="sub" id="stat-courses-sub"></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Meilleure moyenne</div>
+        <div class="value primary" id="stat-best">—</div>
+        <div class="sub" id="stat-best-sub"></div>
+      </div>
+    </div>
+
+    <div class="section-title hidden" id="courses-title">Détail par cours</div>
+
+    <div id="loading" class="spinner-row">Chargement…</div>
+
+    <div id="courses" class="card-list"></div>
+
+    <div id="empty-state" class="card empty-state hidden">
+      <div class="icon">📊</div>
+      <div class="title">Aucune note pour le moment</div>
+      <div class="desc">Vos notes apparaîtront ici dès qu'un enseignant les aura saisies.</div>
+    </div>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topbar.js"></script>
+  <script src="../assets/js/etudiant.js"></script>
+</body>
+</html>

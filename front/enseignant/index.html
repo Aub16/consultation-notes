@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes cours — Consultation Notes</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+  <header class="topbar" id="topbar"></header>
+
+  <main class="content">
+    <div id="loading" class="spinner-row">Chargement…</div>
+
+    <div id="empty-courses" class="card empty-state hidden">
+      <div class="icon">📚</div>
+      <div class="title">Aucun cours pour le moment</div>
+      <div class="desc">Vos cours apparaîtront ici dès qu'ils vous seront attribués.</div>
+    </div>
+
+    <div id="teacher-body" class="teacher-body hidden">
+      <nav class="sidebar" id="sidebar">
+        <div class="side-title">Mes cours</div>
+      </nav>
+
+      <section class="course-panel" id="course-panel">
+        <div class="panel-header">
+          <div>
+            <h2 id="panel-title">—</h2>
+            <div class="sub" id="panel-sub">—</div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="add-evaluation-btn">+ Nouvelle évaluation</button>
+        </div>
+
+        <div id="panel-loading" class="spinner-row hidden">Chargement du cours…</div>
+
+        <div id="panel-empty" class="empty-state hidden">
+          <div class="icon">🧑‍🎓</div>
+          <div class="title">Aucun étudiant inscrit</div>
+          <div class="desc">Aucun étudiant n'est inscrit pour ce cours.</div>
+        </div>
+
+        <div class="table-wrap hidden" id="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Étudiant</th>
+                <th style="width:90px">Moyenne</th>
+                <th style="width:150px" id="new-eval-header">Nouvelle note</th>
+                <th style="width:140px">Heures de colle</th>
+              </tr>
+            </thead>
+            <tbody id="students-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topbar.js"></script>
+  <script src="../assets/js/enseignant.js"></script>
+</body>
+</html>
