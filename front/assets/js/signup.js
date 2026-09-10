@@ -3,11 +3,17 @@ const submitBtn = document.getElementById('submit-btn');
 const errorBanner = document.getElementById('error-banner');
 const errorMessage = document.getElementById('error-message');
 const successBanner = document.getElementById('success-banner');
-const roleSelect = document.getElementById('role');
+const roleInput = document.getElementById('role');
+const roleToggle = document.getElementById('role-toggle');
 const levelField = document.getElementById('level-field');
 
-roleSelect.addEventListener('change', () => {
-  levelField.classList.toggle('hidden', roleSelect.value === 'enseignant');
+roleToggle.querySelectorAll('.role-option').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    roleToggle.querySelectorAll('.role-option').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    roleInput.value = btn.dataset.role;
+    levelField.classList.toggle('hidden', btn.dataset.role === 'enseignant');
+  });
 });
 
 function showError(message) {
@@ -24,7 +30,7 @@ form.addEventListener('submit', async (e) => {
     lastName: document.getElementById('lastName').value.trim(),
     email: document.getElementById('email').value.trim(),
     password: document.getElementById('password').value,
-    role: roleSelect.value,
+    role: roleInput.value,
     level: document.getElementById('level').value.trim() || null,
   };
 

@@ -45,11 +45,12 @@
       </div>
 
       <div class="field">
-        <label for="role">Je suis…</label>
-        <select id="role" required>
-          <option value="etudiant">Étudiant</option>
-          <option value="enseignant">Enseignant</option>
-        </select>
+        <label>Je suis…</label>
+        <div class="role-toggle" id="role-toggle">
+          <button type="button" class="role-option active" data-role="etudiant">Étudiant</button>
+          <button type="button" class="role-option" data-role="enseignant">Enseignant</button>
+        </div>
+        <input type="hidden" id="role" value="etudiant" />
       </div>
 
       <div class="field" id="level-field">

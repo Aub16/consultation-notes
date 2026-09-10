@@ -75,3 +75,30 @@ body.auth-body {
   display: flex;
   gap: 12px;
 }
+
+.role-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.role-option {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.role-option:hover {
+  border-color: var(--primary-soft-border);
+}
+
+.role-option.active {
+  background: var(--primary-soft-bg);
+  border-color: var(--primary-soft-border);
+  color: var(--primary);
+}
