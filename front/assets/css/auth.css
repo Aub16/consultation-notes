@@ -98,7 +98,7 @@ body.auth-body {
 }
 
 .role-option.active {
-  background: var(--primary-soft-bg);
-  border-color: var(--primary-soft-border);
-  color: var(--primary);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }

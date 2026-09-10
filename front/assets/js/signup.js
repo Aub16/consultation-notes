@@ -25,11 +25,19 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
   errorBanner.classList.add('hidden');
 
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (password !== confirmPassword) {
+    showError('Les mots de passe ne correspondent pas.');
+    return;
+  }
+
   const payload = {
     firstName: document.getElementById('firstName').value.trim(),
     lastName: document.getElementById('lastName').value.trim(),
     email: document.getElementById('email').value.trim(),
-    password: document.getElementById('password').value,
+    password,
     role: roleInput.value,
     level: document.getElementById('level').value.trim() || null,
   };
@@ -44,6 +52,6 @@ form.addEventListener('submit', async (e) => {
   } catch (err) {
     showError(err.data && err.data.message ? err.data.message : 'Une erreur est survenue, réessayez.');
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Créer mon compte';
+    submitBtn.textContent = 'Demander la création du compte';
   }
 });
