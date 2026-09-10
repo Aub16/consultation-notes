@@ -241,6 +241,7 @@ input { font-family: inherit; }
 .btn-primary { background: var(--primary); color: #fff; }
 .btn-primary:hover { background: #4338ca; }
 .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary.btn-pending { background: #e2e4e9; color: #999ea8; opacity: 1; cursor: not-allowed; }
 
 .btn-success { background: var(--success); color: #fff; }
 .btn-success:hover { background: #128a3e; }

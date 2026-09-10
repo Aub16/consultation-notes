@@ -3,6 +3,7 @@ function fmt(n) {
 }
 
 function avgClass(avg) {
+  if (avg == null) return '';
   if (avg >= 14) return 'good';
   if (avg < 12) return 'mid';
   return '';

@@ -23,9 +23,11 @@ Un compte non validé par un superviseur ne peut pas se connecter.
 ### 1. Base de données
 
 ```bash
-mysql -u root -p < api/sql/schema.sql
-mysql -u root -p < api/sql/seed.sql   # données de démo (facultatif)
+mysql -u root -p --default-character-set=utf8mb4 < api/sql/schema.sql
+mysql -u root -p --default-character-set=utf8mb4 < api/sql/seed.sql   # données de démo (facultatif)
 ```
+
+> `--default-character-set=utf8mb4` est important : sans lui, certains clients MySQL réinterprètent mal les accents des fichiers `.sql` (encodés en UTF-8) et corrompent les noms/prénoms en base.
 
 ### 2. API
 

@@ -7,6 +7,7 @@ function fmtGrade(n) {
 }
 
 function avgClass(avg) {
+  if (avg == null) return 'neutral';
   if (avg >= 14) return 'good';
   if (avg < 12) return 'mid';
   return 'neutral';
