@@ -314,6 +314,17 @@ input { font-family: inherit; }
 }
 .banner.warning .icon { background: var(--warning); }
 
+.banner.success {
+  background: var(--success-soft-bg);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+.banner.success .icon { background: var(--success); }
+
+/* Stronger, full-color border used for post-action confirmation banners
+   (e.g. account validated/refused) rather than the softer inline-form banners. */
+.banner.solid { border-color: currentColor; }
+
 /* ---------- Empty state ---------- */
 
 .empty-state {
@@ -344,3 +355,38 @@ input { font-family: inherit; }
 
 .hidden { display: none !important; }
 .spinner-row { display: flex; justify-content: center; padding: 40px; color: var(--text-tertiary); }
+
+/* ---------- Row removal animation ---------- */
+
+.card.removing {
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(.98);
+  max-height: 0;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-width: 0;
+  transition: opacity .18s ease, transform .18s ease, max-height .28s ease,
+    margin .28s ease, padding .28s ease, border-width .28s ease;
+}
+
+/* ---------- Inline spinner for buttons ---------- */
+
+.btn.is-loading { position: relative; color: transparent !important; pointer-events: none; }
+.btn.is-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin .6s linear infinite;
+}
+.btn-danger-outline.is-loading::after { border-color: rgba(205, 45, 45, 0.35); border-top-color: var(--danger); }
+
+@keyframes btn-spin { to { transform: rotate(360deg); } }

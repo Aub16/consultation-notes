@@ -80,6 +80,7 @@ function bindRowEvents(course) {
         selectCourse(course.id, { silent: true });
       } catch {
         noteInput.classList.add('has-error');
+        showPanelBanner("La note n'a pas pu être enregistrée. Réessayez.", 'danger');
       }
     });
 
@@ -92,19 +93,36 @@ function bindRowEvents(course) {
         flashSaved(colleInput);
       } catch {
         colleInput.classList.add('has-error');
+        showPanelBanner("Les heures de colle n'ont pas pu être enregistrées. Réessayez.", 'danger');
       }
     });
   });
 }
 
 function flashSaved(input) {
+  input.classList.remove('has-error');
   input.classList.add('saved');
   setTimeout(() => input.classList.remove('saved'), 900);
 }
 
+function showPanelBanner(message, tone) {
+  const banner = document.getElementById('panel-banner');
+  const messageEl = document.getElementById('panel-banner-message');
+  banner.classList.remove('hidden', 'success', 'danger');
+  banner.classList.add(tone);
+  messageEl.textContent = message;
+}
+
+function hidePanelBanner() {
+  document.getElementById('panel-banner').classList.add('hidden');
+}
+
 async function selectCourse(courseId, opts = {}) {
   currentCourseId = courseId;
-  if (!opts.silent) renderSidebar();
+  if (!opts.silent) {
+    renderSidebar();
+    hidePanelBanner();
+  }
 
   panelLoading.classList.remove('hidden');
   panelEmpty.classList.add('hidden');
@@ -137,11 +155,19 @@ addEvaluationBtn.addEventListener('click', async () => {
   if (!currentCourseId) return;
   const label = prompt('Nom de la nouvelle évaluation (ex. Contrôle continu #2)');
   if (!label) return;
+
+  addEvaluationBtn.disabled = true;
+  addEvaluationBtn.classList.add('is-loading');
+
   try {
     await api.post(`/cours/${currentCourseId}/evaluations`, { label });
-    selectCourse(currentCourseId);
+    await selectCourse(currentCourseId, { silent: true });
+    showPanelBanner(`Évaluation « ${label} » créée - vous pouvez saisir les notes.`, 'success');
   } catch {
-    alert("Impossible de créer l'évaluation.");
+    showPanelBanner("Impossible de créer l'évaluation. Réessayez.", 'danger');
+  } finally {
+    addEvaluationBtn.disabled = false;
+    addEvaluationBtn.classList.remove('is-loading');
   }
 });
 
