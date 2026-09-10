@@ -12,7 +12,7 @@ VALUES ('Aubin', 'Devogelaere', 'a.devogelaere@ecole.fr', @demo_hash, @demo_salt
 -- Enseignants
 INSERT INTO users (first_name, last_name, email, password_hash, password_salt, role, status)
 VALUES
-  ('Pr.', 'Dubois', 'p.dubois@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'active'),
+  ('Ziane', 'Menni', 'zianemenni@outlook.fr', @demo_hash, @demo_salt, 'enseignant', 'active'),
   ('Pr.', 'Bernard', 'p.bernard@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'active'),
   ('Pr.', 'Smith', 'p.smith@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'active'),
   ('Pr.', 'Laurent', 'p.laurent@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'active');
@@ -36,7 +36,7 @@ VALUES
 
 -- Cours
 INSERT INTO courses (name, level, teacher_id) VALUES
-  ('Mathématiques', 'L3', (SELECT id FROM users WHERE email = 'p.dubois@ecole.fr')),
+  ('Mathématiques', 'L3', (SELECT id FROM users WHERE email = 'zianemenni@outlook.fr')),
   ('Informatique', 'L3', (SELECT id FROM users WHERE email = 'p.bernard@ecole.fr')),
   ('Anglais', 'L3', (SELECT id FROM users WHERE email = 'p.smith@ecole.fr')),
   ('Physique', 'L3', (SELECT id FROM users WHERE email = 'p.laurent@ecole.fr'));

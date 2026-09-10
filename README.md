@@ -49,7 +49,7 @@ Le front est statique : ouvrir `front/index.html` via un serveur statique (ex. l
 | Email | Mot de passe | Rôle |
 |---|---|---|
 | lea.martin@ecole.fr | password123 | Étudiante |
-| p.dubois@ecole.fr | password123 | Enseignant |
+| zianemenni@outlook.fr | password123 | Enseignant |
 | a.devogelaere@ecole.fr | password123 | Superviseur |
 
 ## Routes API
