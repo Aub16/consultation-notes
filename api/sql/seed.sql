@@ -28,11 +28,14 @@ VALUES
   ('Yanis', 'Benali', 'yanis.benali@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'active', 'L3', '#2024-045');
 
 -- Demandes de compte en attente (pour la démo superviseur)
-INSERT INTO users (first_name, last_name, email, password_hash, password_salt, role, status)
+INSERT INTO users (first_name, last_name, email, password_hash, password_salt, role, status, created_at)
 VALUES
-  ('Thomas', 'Marchand', 't.marchand@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'pending'),
-  ('Nadia', 'Fontaine', 'n.fontaine@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'pending'),
-  ('Elias', 'Lefebvre', 'e.lefebvre@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'pending');
+  ('Karim', 'Haddad', 'k.haddad@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'pending', '2026-09-09 10:00:00'),
+  ('Sophie', 'Bernard', 's.bernard@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'pending', '2026-09-08 14:30:00'),
+  ('Thomas', 'Marchand', 't.marchand@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'pending', '2026-09-07 09:15:00'),
+  ('Nadia', 'Fontaine', 'n.fontaine@ecole.fr', @demo_hash, @demo_salt, 'enseignant', 'pending', '2026-09-06 16:45:00'),
+  ('Elias', 'Lefebvre', 'e.lefebvre@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'pending', '2026-09-05 11:20:00'),
+  ('Emma', 'Girard', 'emma.girard@ecole.fr', @demo_hash, @demo_salt, 'etudiant', 'pending', '2026-09-04 08:50:00');
 
 -- Cours
 INSERT INTO courses (name, level, teacher_id) VALUES
