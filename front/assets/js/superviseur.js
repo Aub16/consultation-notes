@@ -8,6 +8,14 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('fr-FR');
 }
 
+function showActionBanner(message, tone) {
+  const banner = document.getElementById('action-banner');
+  const messageEl = document.getElementById('action-banner-message');
+  banner.classList.remove('hidden', 'success', 'danger');
+  banner.classList.add(tone);
+  messageEl.textContent = message;
+}
+
 function renderRequest(req) {
   return `
     <div class="card request-row" data-request-id="${req.id}">
@@ -65,17 +73,32 @@ async function loadRequests() {
         const row = btn.closest('.request-row');
         const requestId = row.dataset.requestId;
         const action = btn.dataset.action;
-        row.querySelectorAll('button').forEach((b) => (b.disabled = true));
+        const name = `${row.querySelector('.name').textContent}`;
+        const buttons = row.querySelectorAll('button');
+
+        buttons.forEach((b) => (b.disabled = true));
+        btn.classList.add('is-loading');
+
         try {
           await api.post(`/comptes-en-attente/${requestId}/${action}`);
-          row.remove();
+
+          if (action === 'valider') {
+            showActionBanner(`La demande de ${name} a été validée - le compte peut désormais se connecter.`, 'success');
+          } else {
+            showActionBanner(`La demande de ${name} a été refusée - le compte ne sera pas activé.`, 'danger');
+          }
+
+          row.classList.add('removing');
+          row.addEventListener('transitionend', () => row.remove(), { once: true });
+
           loadStats();
-          const remaining = requestsEl.querySelectorAll('.request-row').length;
+          const remaining = requestsEl.querySelectorAll('.request-row').length - 1;
           pendingPill.textContent = `${remaining} en attente`;
           if (remaining === 0) emptyState.classList.remove('hidden');
         } catch {
-          row.querySelectorAll('button').forEach((b) => (b.disabled = false));
-          alert("Impossible de traiter cette demande pour l'instant.");
+          buttons.forEach((b) => (b.disabled = false));
+          btn.classList.remove('is-loading');
+          showActionBanner("Impossible de traiter cette demande pour l'instant.", 'danger');
         }
       });
     });

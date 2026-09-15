@@ -16,6 +16,11 @@
       <p>Supervision des comptes, cours et notes de l'établissement</p>
     </div>
 
+    <div class="banner solid hidden" id="action-banner" style="width: 100%; margin-top: 26px;">
+      <div class="icon">!</div>
+      <span id="action-banner-message"></span>
+    </div>
+
     <div class="stats">
       <div class="stat-card">
         <div class="label">En attente de validation</div>
@@ -45,7 +50,9 @@
     <div id="requests" class="card-list"></div>
 
     <div id="empty-state" class="card empty-state hidden">
-      <div class="icon">✅</div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
       <div class="title">Aucune demande en attente</div>
       <div class="desc">Toutes les demandes de création de compte ont été traitées.</div>
     </div>
