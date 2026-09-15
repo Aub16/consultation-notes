@@ -8,6 +8,8 @@ Application web 3-tiers de consultation de notes (projet DEV1).
 
 Le client ne parle jamais directement à la base : tout passe par l'API.
 
+> 📖 **Développeurs & Reprise du projet** : Consultez la [Documentation Technique complète](DOCUMENTATION_TECHNIQUE.md) pour l'architecture détaillée, le modèle de données, les mécanismes d'authentification/sécurité natifs et les contrats d'API.
+
 ## Rôles
 
 | Rôle | Peut faire |
