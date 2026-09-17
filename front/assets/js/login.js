@@ -37,6 +37,9 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const user = await api.post('/connexion', { email, password });
+    if (user.token) {
+      localStorage.setItem('session_token', user.token);
+    }
     window.location.href = `/${user.role}/index.html`;
   } catch (err) {
     if (err.status === 403) {

@@ -27,6 +27,7 @@ function renderTopbar(user) {
   `;
   document.getElementById('logout-btn').addEventListener('click', async () => {
     try { await api.post('/deconnexion'); } catch { /* ignore */ }
+    localStorage.removeItem('session_token');
     window.location.href = '/index.html';
   });
 }
@@ -40,6 +41,7 @@ async function requireRole(expectedRole) {
   try {
     user = await api.get('/moi');
   } catch {
+    localStorage.removeItem('session_token');
     window.location.href = '/index.html';
     return null;
   }

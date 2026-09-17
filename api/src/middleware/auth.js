@@ -1,7 +1,10 @@
 const { getUserBySessionToken, COOKIE_NAME } = require('../utils/session');
 
 async function attachUser(req, res, next) {
-  const token = req.cookies[COOKIE_NAME];
+  let token = req.cookies[COOKIE_NAME];
+  if (!token && req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+    token = req.headers.authorization.slice(7).trim();
+  }
   req.sessionToken = token;
   req.user = await getUserBySessionToken(token);
   next();

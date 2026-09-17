@@ -9,6 +9,15 @@ const router = express.Router();
 
 const VALID_SIGNUP_ROLES = ['etudiant', 'enseignant'];
 
+const isSecure = process.env.COOKIE_SECURE !== 'false';
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  sameSite: isSecure ? 'none' : 'lax',
+  secure: isSecure,
+  partitioned: isSecure,
+  maxAge: SESSION_DURATION_MS,
+};
+
 router.post('/connexion', async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -31,13 +40,12 @@ router.post('/connexion', async (req, res, next) => {
     }
 
     const { token } = await createSession(user.id);
-    res.cookie(COOKIE_NAME, token, {
-      httpOnly: true,
-      sameSite: 'lax',
-      maxAge: SESSION_DURATION_MS,
-    });
+    res.cookie(COOKIE_NAME, token, COOKIE_OPTIONS);
 
-    res.json(toSafeUser(user));
+    res.json({
+      ...toSafeUser(user),
+      token,
+    });
   } catch (err) {
     next(err);
   }
@@ -83,8 +91,14 @@ router.post('/inscription', async (req, res, next) => {
 
 router.post('/deconnexion', async (req, res, next) => {
   try {
-    await destroySession(req.cookies[COOKIE_NAME]);
-    res.clearCookie(COOKIE_NAME);
+    const token = req.sessionToken || req.cookies[COOKIE_NAME];
+    await destroySession(token);
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      sameSite: isSecure ? 'none' : 'lax',
+      secure: isSecure,
+      partitioned: isSecure,
+    });
     res.json({ message: 'Déconnecté.' });
   } catch (err) {
     next(err);

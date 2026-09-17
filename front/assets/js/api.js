@@ -1,4 +1,6 @@
-const API_BASE = 'https://consult.waifly.com/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3000/api'
+  : 'https://consult.waifly.com/api';
 
 class ApiError extends Error {
   constructor(status, data) {
@@ -9,13 +11,17 @@ class ApiError extends Error {
 }
 
 async function apiRequest(path, options = {}) {
+  const token = localStorage.getItem('session_token');
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+    ...(options.headers || {}),
+  };
+
   const res = await fetch(`${API_BASE}${path}`, {
     method: options.method || 'GET',
     credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers || {}),
-    },
+    headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
 
