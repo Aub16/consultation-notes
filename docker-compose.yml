@@ -3,4 +3,4 @@ services:
   mon-site:
     build: .
     ports:
-      - "4328:80"
+      - "4328:3000"
